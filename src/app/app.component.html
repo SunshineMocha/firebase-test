@@ -1,12 +1,16 @@
-<app-header></app-header>
-<header>
-  <h1>Videogiochi</h1>
-  <button (click)="auth.signIn()">Sign In</button>
-</header>
-<main>
-  <div *ngFor="let videogioco of videogames">
-    <span><strong>{{videogioco.title}}</strong></span>
-    <span>Release: {{videogioco.release}}</span>
-    <span>Active: {{videogioco.release ? "Still Active" : "No"}}</span>
-  </div>
-</main>
+
+
+  <!-- <header>
+    <h1>Videogiochi</h1>
+    <button (click)="auth.signIn()">Sign In</button>
+  </header> -->
+<body>
+  <app-header></app-header>
+  <main>
+    <div *ngFor="let videogioco of videogames">
+      <span><strong>{{videogioco.title}}</strong></span>
+      <span>Release: {{videogioco.release}}</span>
+      <span>Active: {{videogioco.release ? "Still Active" : "No"}}</span>
+    </div>
+  </main>
+</body>

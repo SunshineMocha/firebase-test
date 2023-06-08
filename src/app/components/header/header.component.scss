@@ -1,3 +1,21 @@
 .header-container{
-background: purple
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fe0016;
+}
+.signin{
+}
+.title{
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.propic{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px 50px 50px 50px;
 }

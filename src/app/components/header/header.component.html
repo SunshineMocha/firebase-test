@@ -1,4 +1,14 @@
 <div class="header-container">
-  <div class="title"></div>
-  <div class="signin"></div>
+  <div class="title">
+    <h1>List of Games</h1>
+  </div>
+  <div *ngIf="auth.userSubject != null; else elseBlock">
+    <button (click)="auth.signIn()">Sign In</button>
+  </div>
+  <ng-template #elseBlock class=".signin">
+    <div class="profile-container">
+      <img src="" alt="Profile Picture Placeholder" class="propic">
+      <span>NAME SURNAME PLACEHOLDER</span>
+    </div>
+    <button (click)="auth.logOut()">Log out</button></ng-template>
 </div>

@@ -28,6 +28,11 @@ export class AuthService {
         console.log('auth state', user)
         const uid = user.uid;
 
+        console.log(user.displayName)
+        console.log(user.email)
+        console.log(user.photoURL)
+
+
         this.userSubject.next(user)
 
       } else {
@@ -52,5 +57,15 @@ export class AuthService {
     const credential = GoogleAuthProvider.credentialFromError(error);
   });
   }
+
+  async logOut() {
+    try {
+      await this.auth.signOut();
+      console.log('Logout successful!');
+    } catch (error) {
+      console.log('Error while logging out', error);
+    }
+  }
+
 }
 
