@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from '../firebase/firebase.service';
-import { Auth, getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { Auth, getAuth, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import { GoogleAuthProvider } from "firebase/auth";
 import { Subject } from 'rxjs';
+import { FirestoreService } from '../firestore/firestore.service';
 
 
 @Injectable({
@@ -19,19 +20,21 @@ export class AuthService {
   userSubject: Subject<any> = new Subject() // username, mail, picture
 
 
-  constructor(private firebase: FirebaseService) {
+  constructor(private firebase: FirebaseService, private firestore: FirestoreService) {
     this.auth = getAuth(this.firebase.app);
     this.provider = new GoogleAuthProvider();
 
-    onAuthStateChanged(this.auth, (user) => {
+    onAuthStateChanged(this.auth, async (user) => {
       if (user) {
         console.log('auth state', user)
-        const uid = user.uid;
 
-        console.log(user.displayName)
-        console.log(user.email)
-        console.log(user.photoURL)
+        // const uid = user.uid;
 
+        const dbUser = await firestore.getUser(user.uid)
+
+        if(!dbUser){
+          await firestore.saveUser(user);
+        }
 
         this.userSubject.next(user)
 
@@ -58,14 +61,20 @@ export class AuthService {
   });
   }
 
-  async logOut() {
-    try {
-      await this.auth.signOut();
-      console.log('Logout successful!');
-    } catch (error) {
-      console.log('Error while logging out', error);
-    }
+  // async logOut() {
+  //   try {
+  //     await this.auth.signOut();
+  //     console.log('Logout successful!');
+  //   } catch (error) {
+  //     console.log('Error while logging out', error);
+  //   }
+  // }
+
+  signOut() {
+   signOut(this.auth)
+   .then(result => console.log(result))
   }
+
 
 }
 

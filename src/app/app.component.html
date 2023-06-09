@@ -1,11 +1,6 @@
-
-
-  <!-- <header>
-    <h1>Videogiochi</h1>
-    <button (click)="auth.signIn()">Sign In</button>
-  </header> -->
+<app-header></app-header>
+<!--
 <body>
-  <app-header></app-header>
   <main>
     <div *ngFor="let videogioco of videogames">
       <span><strong>{{videogioco.title}}</strong></span>
@@ -13,4 +8,5 @@
       <span>Active: {{videogioco.release ? "Still Active" : "No"}}</span>
     </div>
   </main>
-</body>
+</body> -->
+<router-outlet></router-outlet>

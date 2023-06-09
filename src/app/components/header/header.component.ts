@@ -8,5 +8,17 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(public auth: AuthService){}
+
+  user: any
+  constructor(public auth: AuthService){
+    this.auth.userSubject.subscribe(user => this.user = user);
+  }
+
+  logIn(){
+    this.auth.signIn();
+  }
+
+  logOut(){
+    this.auth.signOut();
+  }
 }

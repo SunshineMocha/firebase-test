@@ -1,4 +1,4 @@
-<div class="header-container">
+<!-- <div class="header-container">
   <div class="title">
     <h1>List of Games</h1>
   </div>
@@ -11,4 +11,24 @@
       <span>NAME SURNAME PLACEHOLDER</span>
     </div>
     <button (click)="auth.logOut()">Log out</button></ng-template>
-</div>
+</div> -->
+
+<header class="header">
+  <h1 class="nintengiochi">Nintengiochi</h1>
+  <div class="spacer"></div>
+  <div class="auth">
+    <button *ngIf="!user" (click)="logIn()">Login</button>
+    <div *ngIf="user" class="user-info profile-container">
+      <img class="user-img" src="{{user.photoURL}}" alt="Propic">
+      <div class="user-data">
+        <span>{{user.displayName}}</span>
+        <span>{{user.email}}</span>
+      </div>
+    </div>
+    <button *ngIf="user" (click)="logOut()">Logout</button>
+  </div>
+  <nav>
+    <a href="">HOME</a>
+    <a *ngIf="user" href="">USER</a>
+  </nav>
+</header>
